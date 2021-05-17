@@ -75,13 +75,54 @@ eletype Delete_List(SqList& L, int i,eletype &e)
     return e;
 }
 
+int Locate_List(SqList &L,eletype e)
+{
+    //找到L中值为e的第一个位置并返回
+    eletype* p =L.elem;
+    for(int i=0;i<L.len;i++){
+        if(*(p+i)==e){
+            return i;
+        }
+    }
+    return -1;
+}
+
+bool Merge_List(SqList &La, SqList &Lb, SqList &Lc)
+{
+    Lc.len=La.len+Lb.len;
+    Lc.listsize=La.len+Lb.len;
+    try{
+         Lc.elem=new eletype [Lc.len];
+    }catch(const bad_alloc&e){
+        return -1;
+    }
+    eletype *pa=La.elem;
+    eletype *pb=Lb.elem;
+    eletype *pc=Lc.elem;
+    eletype *paend=&La.elem[La.len-1];
+    eletype *pbend=&La.elem[La.len-1];
+
+    while(pa<=paend&&pb<=pbend){
+        if(*pa<=*pb) *(pc++)=*(pa++);
+        else *(pc++)=*(pb++);
+    }
+    while(pa<=paend){
+        *(pc++)=*(pa++);
+    }
+    while(pb<=pbend){
+        *(pc++)=*(pb++);
+    }
+}
+
 int main()
 {
-    eletype e;
+    // eletype e;
     SqList L;
     Init_List(L);
     Insert_List(L,1,2);
-    Delete_List(L,1,e);
-    cout<<e<<endl;
+     Insert_List(L,2,3);
+    //Delete_List(L,1,e);
+    int temp=Locate_List(L,3);
+    cout<<temp<<endl;
     return 0;
 }
