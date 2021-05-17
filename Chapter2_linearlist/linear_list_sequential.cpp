@@ -35,10 +35,11 @@ bool Insert_List(SqList&L, int i, eletype e)
 {
     //在第i个位置前插入元素
     if(i<1||i>L.len+1){
+        cout<<"INSERT:i Beyon Limit"<<endl;
         return -1;
     }
     if(L.len>=L.listsize){
-        int *newbase;
+        eletype *newbase;
         try{
             newbase=new int[List_size+List_Size_Increment];
         }catch(bad_alloc&e){
@@ -57,10 +58,30 @@ bool Insert_List(SqList&L, int i, eletype e)
     return 1;
 }
 
+eletype Delete_List(SqList& L, int i,eletype &e)
+{
+    //删除第i个元素，用e返回其值
+    if(i<1||i>L.len){
+        cout<<"DLELTE:i Beyon Limit"<<endl;
+        return -1;
+    }
+    int *begin=&(L.elem[i-1]);
+    int *end=&(L.elem[L.len-1]);
+    e=L.elem[i-1];
+    for(++begin;begin<=end;begin++){
+        *(begin-1)=*(begin);
+    }
+    L.len--;
+    return e;
+}
+
 int main()
 {
+    eletype e;
     SqList L;
     Init_List(L);
     Insert_List(L,1,2);
+    Delete_List(L,1,e);
+    cout<<e<<endl;
     return 0;
 }
