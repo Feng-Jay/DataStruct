@@ -92,37 +92,62 @@ bool Merge_List(SqList &La, SqList &Lb, SqList &Lc)
     Lc.len=La.len+Lb.len;
     Lc.listsize=La.len+Lb.len;
     try{
-         Lc.elem=new eletype [Lc.len];
+         Lc.elem=new eletype [Lc.listsize];
     }catch(const bad_alloc&e){
         return -1;
     }
     eletype *pa=La.elem;
     eletype *pb=Lb.elem;
     eletype *pc=Lc.elem;
-    eletype *paend=&La.elem[La.len-1];
-    eletype *pbend=&La.elem[La.len-1];
+    eletype *paend=&(La.elem[La.len-1]);
+    eletype *pbend=&(Lb.elem[Lb.len-1]);
 
     while(pa<=paend&&pb<=pbend){
-        if(*pa<=*pb) *(pc++)=*(pa++);
-        else *(pc++)=*(pb++);
+        if(*pa<=*pb) *pc++=*pa++;
+        else *pc++=*pb++;
     }
     while(pa<=paend){
-        *(pc++)=*(pa++);
+        *pc++=*pa++;
     }
     while(pb<=pbend){
-        *(pc++)=*(pb++);
+        *pc++=*pb++;
     }
+    return 1;
 }
 
 int main()
 {
     // eletype e;
-    SqList L;
-    Init_List(L);
-    Insert_List(L,1,2);
-     Insert_List(L,2,3);
+    // SqList L;
+    SqList La,Lb,Lc;
+    Init_List(La);
+    Init_List(Lb);
+    for(int i=0;i<10;i++){
+        La.elem[i]=i*2;
+    }
+    for(int i=0;i<10;i++){
+        Lb.elem[i]=i;
+    }
+    La.len=10;Lb.len=10;
+
+    Merge_List(La,Lb,Lc);
+
+    for(int i=0;i<10;i++){
+        cout<<La.elem[i]<<" ";
+    }
+    cout<<endl;
+    for(int i=0;i<10;i++){
+        cout<<Lb.elem[i]<<" ";
+    }
+    cout<<endl;
+    for(int i=0;i<19;i++){
+        cout<<Lc.elem[i]<<" ";
+    }
+    // Init_List(L);
+    // Insert_List(L,1,2);
+    // Insert_List(L,2,3);
     //Delete_List(L,1,e);
-    int temp=Locate_List(L,3);
-    cout<<temp<<endl;
+    // int temp=Locate_List(L,3);
+    // cout<<temp<<endl;
     return 0;
 }
