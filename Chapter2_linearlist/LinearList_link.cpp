@@ -95,6 +95,8 @@ int Delete_List (LinkList &L,int i, eleytpe &e)
 
 int Merge_List(LinkList &La, LinkList &Lb, LinkList &Lc)
 {
+    //理论来说，如果Merge后，La和Lb就不能使用了
+    //因为并没有开辟新空间，只是将原来La与Lb中的结点重新排列
     Lc=new LNode;
     LinkList tempa=La->next;
     LinkList tempb=Lb->next;
