@@ -74,6 +74,7 @@ bool Insert_List(LinkList &L, int i, eleytpe e)
 
 int Delete_List (LinkList &L,int i, eleytpe &e)
 {
+    //删除第i个元素，用e返回其值
     LinkList temp=L;
     int j=0;
     while(temp!=nullptr&&j<i-1){
@@ -88,16 +89,49 @@ int Delete_List (LinkList &L,int i, eleytpe &e)
     temp->next=temp2->next;
     e=temp2->data;
     delete temp2;
+    delete temp;
     return 1;
 }
 
+int Merge_List(LinkList &La, LinkList &Lb, LinkList &Lc)
+{
+    Lc=new LNode;
+    LinkList tempa=La->next;
+    LinkList tempb=Lb->next;
+    LinkList tempc=Lc;
+    while(tempa!=nullptr&&tempb!=nullptr){
+        if(tempa->data<=tempb->data){
+            tempc->next=tempa;
+            tempc=tempa;
+            tempa=tempa->next;
+        }
+        else {
+            tempc->next=tempb;
+            tempc=tempb;
+            tempb=tempb->next;
+        }
+    }
+    tempc->next=(tempa!=nullptr)? tempa: tempb;
+
+}
 
 int main()
 {
-    LinkList Head;
-    eleytpe e;
-    Create_List(Head,10);
-    cout<<Head->data<<endl;
-    Getelem(Head,1,e);
-    cout<<e<<endl;
+    // LinkList Head;
+    // eleytpe e;
+    // Create_List(Head,10);
+    // cout<<Head->data<<endl;
+    // Getelem(Head,1,e);
+    // Delete_List(Head,2,e);
+    // cout<<e<<endl;
+
+    LinkList La,Lb,Lc;
+    Create_List(La,5);
+    Create_List(Lb,5);
+    Merge_List(La,Lb,Lc);
+    Lc=Lc->next;
+    for(int i=0;i<La->data+Lb->data;i++){
+        cout<<Lc->data<<" ";
+        Lc=Lc->next;
+    }
 }
