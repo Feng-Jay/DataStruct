@@ -17,7 +17,26 @@ typedef struct LNode{
 //     LNode *next;
 // };
 
-bool Getelem(LinkList L, int i, eleytpe &e)
+int Create_List(LinkList &L, int n)
+{
+    //构造一个n个元素的链表
+    L=new LNode;
+    /*Attention! 在C++中，对于结构体指针，cpu会初始给他一个存指针的空间
+    此时没有空间存放结构体中的数值，所以如果不申请堆上空间就会segmentation falut
+    记住，在C++中一个new一定要对应一个delete*/
+    L->data=n;
+    L->next=NULL;
+    cout<<"Please input the REVERSE Order "<<n<<" values of n nodes"<<endl;
+    for(int i=0;i<n;i++){
+        LinkList temp=new LNode;
+        cin>>temp->data;
+        temp->next=L->next;
+        L->next=temp;
+    }
+    return 1;
+}
+
+int Getelem(LinkList L, int i, eleytpe &e)
 {
     //找到第i个元素的值并用e返回，L为单链表的头结点
     LinkList temp=L->next;
@@ -27,28 +46,58 @@ bool Getelem(LinkList L, int i, eleytpe &e)
         j++;
     }
     if(temp==nullptr||j>i)
-    return 0;
+    return -1;
 
     e=temp->data;
     return 1;
 }
 
+bool Insert_List(LinkList &L, int i, eleytpe e)
+{
+    //在第i个位置前插入值为e的元素
+    LinkList temp=L;
+    int j=0;
+    while(temp!=nullptr&&j<i-1){
+        temp=temp->next;
+        j++;
+    }
+    if(temp==nullptr||j>i-1){
+        cout<<"No "<<i<<"th elem"<<endl;
+        return -1;
+    }
+    LinkList insert_e=new LNode;
+    insert_e->next=temp->next;
+    temp->next=insert_e;
+    insert_e->data=e;
+    return 1;
+}
+
+int Delete_List (LinkList &L,int i, eleytpe &e)
+{
+    LinkList temp=L;
+    int j=0;
+    while(temp!=nullptr&&j<i-1){
+        temp=temp->next;
+        j++;
+    }
+    if(temp==nullptr||j>i-1){
+        cout<<"No "<<i<<"th elem!"<<endl;
+        return -1;
+    }
+    LinkList temp2=temp->next;
+    temp->next=temp2->next;
+    e=temp2->data;
+    delete temp2;
+    return 1;
+}
+
+
 int main()
 {
-    LinkList L,TEMP;
-    L=new LNode;
-    TEMP=new LNode;
-    /*Attention! 在C++中，对于结构体指针，cpu会初始给他一个存指针的空间
-    此时没有空间存放结构体中的数值，所以如果不申请堆上空间就会segmentation falut
-    记住，在C++中一个new一定要对应一个delete*/
+    LinkList Head;
     eleytpe e;
-    TEMP->next=L->next;
-    L->next=TEMP;
-    TEMP->data=5;
-    L->data=1;
-    Getelem(L,1,e);
+    Create_List(Head,10);
+    cout<<Head->data<<endl;
+    Getelem(Head,1,e);
     cout<<e<<endl;
-    delete L;
-    delete TEMP;
-    return 0;
 }
