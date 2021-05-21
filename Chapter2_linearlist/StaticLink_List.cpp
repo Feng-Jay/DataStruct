@@ -85,6 +85,7 @@ int Free_SL(SLinkList &SL,int i)
     /*回收下标为i的元素*/
     SL[i].cur=SL[0].cur;
     SL[0].cur=i;
+    return 1;
 }
 
 int Delete_SL(SLinkList &SL, int i)
