@@ -98,6 +98,7 @@ int Merge_List(LinkList &La, LinkList &Lb, LinkList &Lc)
     Lc=new LNode;
     LinkList tempa=La->next;
     LinkList tempb=Lb->next;
+    Lc=La;
     LinkList tempc=Lc;
     while(tempa!=nullptr&&tempb!=nullptr){
         if(tempa->data<=tempb->data){
@@ -112,7 +113,7 @@ int Merge_List(LinkList &La, LinkList &Lb, LinkList &Lc)
         }
     }
     tempc->next=(tempa!=nullptr)? tempa: tempb;
-
+    return 1;
 }
 
 int main()
