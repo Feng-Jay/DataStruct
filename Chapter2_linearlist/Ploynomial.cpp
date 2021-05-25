@@ -51,23 +51,32 @@ int Add_Ploy(PLinkList &La, PLinkList &Lb)
         if(tempa->exp<tempb->exp){
             tempc->next=tempa;
             tempc=tempa;
+            if(tempa->next!=nullptr)
             tempa=tempa->next;
+            else break;
         }
         else if (tempa->exp>tempb->exp){
-            PLinkList p =new PLnode;
-            p=tempb->next;
-            tempb->next=tempa;
-            tempc->next=tempb;
-            tempc=tempb;
-            tempb=p;
+            if(tempb->next!=nullptr){
+                PLinkList p =new PLnode;
+                p=tempb->next;
+                tempb->next=tempa;
+                tempc->next=tempb;
+                tempc=tempb;
+                tempb=p;
+            }else{
+                tempb->next=tempa;
+                tempc->next=tempb;
+                tempc=tempb;
+                break;
+            } 
         }
-        else if(tempa->exp==tempb->exp){
+        else if(tempa->exp==tempb->exp&&tempa->next!=nullptr&&tempb->next!=nullptr){
             double y = tempa->coef+tempb->coef;
             if(y!=0.0){
                 tempa->coef=y;
                 tempc->next=tempa;
                 tempc=tempa;
-            }else {
+            }else if(tempa->next!=nullptr){
                 tempc->next=tempa->next;
                 delete tempa;
             }
