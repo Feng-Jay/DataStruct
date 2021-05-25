@@ -2,6 +2,7 @@
 
 using namespace std;
 
+const int ERROR=2147483647;
 
 typedef struct PLnode{
     double coef;
@@ -18,6 +19,7 @@ int Init_List(PLinkList &L, int n)
     PLinkList temp2=L;//指针的赋值为地址的赋值，即将一个指针指向的地址给另一个指针
     for(int i=0;i<n;i++){
         temp=new PLnode;
+        temp->exp=ERROR;
         temp->next=nullptr;
         cin>>temp->coef>>temp->exp;
         temp2->next=temp;
@@ -46,8 +48,9 @@ int Add_Ploy(PLinkList &La, PLinkList &Lb)
     PLinkList tempa,tempb,tempc;
     Lc=La;
     tempa=La; tempb=Lb; tempc=Lc;
+    tempa=tempa->next;
+    tempb=tempb->next;
     while(tempa->next!=nullptr&&tempb->next!=nullptr){
-        tempa=tempa->next; tempb=tempb->next;
         if(tempa->exp<tempb->exp){
             tempc->next=tempa;
             tempc=tempa;
@@ -70,20 +73,26 @@ int Add_Ploy(PLinkList &La, PLinkList &Lb)
                 break;
             } 
         }
-        else if(tempa->exp==tempb->exp&&tempa->next!=nullptr&&tempb->next!=nullptr){
+        else if(tempa->exp==tempb->exp){
             double y = tempa->coef+tempb->coef;
             if(y!=0.0){
                 tempa->coef=y;
                 tempc->next=tempa;
                 tempc=tempa;
-            }else if(tempa->next!=nullptr){
+            }else if(y==0.0&&tempa->next!=nullptr){
                 tempc->next=tempa->next;
                 delete tempa;
+            }else{
+                delete tempa;
+                break;
             }
+            tempa=tempc->next;
             PLinkList p=new PLnode;
             p=tempb;
-            tempa=tempc->next;
-            tempb=tempb->next;
+            if(tempb->next!=nullptr)
+            {
+             tempb=tempb->next;
+            }
             delete p;
         }
     }
@@ -96,8 +105,8 @@ int Add_Ploy(PLinkList &La, PLinkList &Lb)
 int main()
 {
     PLinkList La,Lb;
-    Init_List(La,5);
-    Init_List(Lb,5);
+    Init_List(La,2);
+    Init_List(Lb,2);
     Add_Ploy(La,Lb);
     Print_List(La);
     return 0;
