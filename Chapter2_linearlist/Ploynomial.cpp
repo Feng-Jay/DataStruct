@@ -39,10 +39,57 @@ int Print_List(PLinkList L)
     return 1;
 }
 
+int Add_Ploy(PLinkList &La, PLinkList &Lb)
+{
+    PLinkList Lc;
+    // Lc=new PLnode;
+    PLinkList tempa,tempb,tempc;
+    Lc=La;
+    tempa=La; tempb=Lb; tempc=Lc;
+    while(tempa->next!=nullptr&&tempb->next!=nullptr){
+        tempa=tempa->next; tempb=tempb->next;
+        if(tempa->exp<tempb->exp){
+            tempc->next=tempa;
+            tempc=tempa;
+            tempa=tempa->next;
+        }
+        else if (tempa->exp>tempb->exp){
+            PLinkList p =new PLnode;
+            p=tempb->next;
+            tempb->next=tempa;
+            tempc->next=tempb;
+            tempc=tempb;
+            tempb=p;
+        }
+        else if(tempa->exp==tempb->exp){
+            double y = tempa->coef+tempb->coef;
+            if(y!=0.0){
+                tempa->coef=y;
+                tempc->next=tempa;
+                tempc=tempa;
+            }else {
+                tempc->next=tempa->next;
+                delete tempa;
+            }
+            PLinkList p=new PLnode;
+            p=tempb;
+            tempa=tempc->next;
+            tempb=tempb->next;
+            delete p;
+        }
+    }
+    if(tempb->next!=nullptr){
+        tempc->next=tempb;
+    }
+    return 1;
+}
+
 int main()
 {
-    PLinkList L;
-    Init_List(L,5);
-    Print_List(L);
+    PLinkList La,Lb;
+    Init_List(La,5);
+    Init_List(Lb,5);
+    Add_Ploy(La,Lb);
+    Print_List(La);
     return 0;
 }
