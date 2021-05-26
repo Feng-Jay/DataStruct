@@ -17,6 +17,7 @@ int trans(stack<int> &mystack,int n,int tar)
         cout<<e;
     }
     cout<<endl;
+    return 1;
 }
 
 int main()
