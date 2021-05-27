@@ -1,3 +1,4 @@
+/*检查由([{)]}组成的括号字符序列是否正确*/
 #include <iostream>
 #include <stack>
 #include <string.h>
