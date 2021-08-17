@@ -11,6 +11,7 @@ typedef struct LNode{
 //因为结构体内要有自引用指针，所以在C中必须要先给结构体命名
 //后面的LinkList<==>LNode *;是结构体的指针
 //为了兼容C，采用这种方式写
+
 /*C++ Mode*/
 // struct LNode{
 //     eleytpe data;
