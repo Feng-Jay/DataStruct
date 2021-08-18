@@ -24,14 +24,71 @@ void get_next(string sample, int * next)
     }
 }
 
+int KMP (string domain, string sample, int* next)
+{
+    int index1=0;
+    int index2=0;
+    int l1=domain.length();
+    int l2=sample.length();//
+    while(index1<l1&&index2<l2){
+        if(index2==-1||domain[index1]==sample[index2]){
+            index1++;
+            index2++;
+        }
+        else {
+            index2=next[index2];
+        }
+    }
+
+    if(index2>=sample.length()){
+        cout <<index1<<" "<<index2<<endl;
+        return index1-sample.length();
+    }
+    else {
+        return -1;
+    }
+}
+
+int KMP (string domain, string sample, int* next, int pos)
+{
+    int index1=pos-1;
+    int index2=0;
+    int l1=domain.length();
+    int l2=sample.length();//
+    while(index1<l1&&index2<l2){
+        if(index2==-1||domain[index1]==sample[index2]){
+            index1++;
+            index2++;
+        }
+        else {
+            index2=next[index2];
+        }
+    }
+
+    if(index2>=sample.length()){
+        cout <<index1<<" "<<index2<<endl;
+        return index1-sample.length();
+    }
+    else {
+        return -1;
+    }
+}
+
 int main()
 {
     string sample="abaabcac";
     string domain="acabaabaabcacaabc";
     int * next = new int [sample.length()];
-    get_next(sample,next); 
+    get_next(sample,next);
+    cout<<"sample's next is : "; 
     for(int i=0;i<sample.length();i++){
         cout<<next[i]<<" ";
     }
     cout<<endl;
+
+    int ans=KMP(domain,sample,next,1);
+    if(ans!=-1)
+    cout<<"the sample appears from the "<<ans+1<<" pos of domain"<<endl;
+    else cout<<"no such sample in domain string!"<<endl;
+    return 0;
 }
