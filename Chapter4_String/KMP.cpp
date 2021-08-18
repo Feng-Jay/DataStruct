@@ -24,6 +24,21 @@ void get_next(string sample, int * next)
     }
 }
 
+void get_nextval(string sample, int * nextval)
+{
+    nextval[0]=-1;
+    int i,j;
+    i=0; j=-1;
+    while(i<sample.length()){
+        if(j==-1||sample[i]==sample[j]){
+            i++;j++;
+            if(sample[i]!=sample[j]) nextval[i]=j;
+            else nextval[i]=nextval[j];
+        }
+        else j=nextval[j];
+    }
+}
+
 int KMP (string domain, string sample, int* next)
 {
     int index1=0;
@@ -82,6 +97,8 @@ int main()
     string sample="abaabcac";
     string domain="acabaabaabcacaabc";
     int * next = new int [sample.length()];
+    int * nextval= new int [sample.length()];
+    get_nextval(sample, nextval);
     get_next(sample,next);
     cout<<"sample's next is : "; 
     for(int i=0;i<sample.length();i++){
@@ -89,7 +106,13 @@ int main()
     }
     cout<<endl;
 
-    int ans=KMP(domain,sample,next,1);
+    cout<<"sample's nextval is : "; 
+    for(int i=0;i<sample.length();i++){
+        cout<<nextval[i]<<" ";
+    }
+    cout<<endl;
+
+    int ans=KMP(domain,sample,nextval,1);
     if(ans!=-1)
     cout<<"the sample appears from the "<<ans+1<<" pos of domain"<<endl;
     else cout<<"no such sample in domain string!"<<endl;
