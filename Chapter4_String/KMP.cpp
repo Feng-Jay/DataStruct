@@ -53,8 +53,11 @@ int KMP (string domain, string sample, int* next, int pos)
 {
     int index1=pos-1;
     int index2=0;
-    int l1=domain.length();
-    int l2=sample.length();//
+    int l1=domain.length();//impoatant!
+    int l2=sample.length();
+    //Attention! 因为length()函数返回的是无符号数，所以与-1比较时，会将-1视作无符号数，即int的最大正数的值
+    //此时肯定比sample长度大，会直接推出循环，所以需要将其转换为int类型
+    //在这里卡了一会，通过debug发现这点！
     while(index1<l1&&index2<l2){
         if(index2==-1||domain[index1]==sample[index2]){
             index1++;
