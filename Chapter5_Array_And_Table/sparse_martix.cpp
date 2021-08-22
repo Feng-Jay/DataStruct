@@ -66,6 +66,7 @@ int transfer_2(martix &a, martix &outcome)
         outcome.data[temp2].e=a.data[m].e;
         cpot[temp1]++;
     }
+    return 1;
 }
 
 int main()
