@@ -1,0 +1,46 @@
+Date : 2021-08-24 10:36:47
+Directory : d:\Vscode_win\C++\data_struct
+Total : 17 files,  1081 codes, 96 comments, 166 blanks, all 1343 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C++      |         15 |      1,041 |         96 |        133 |      1,270 |
+| Markdown |          2 |         40 |          0 |         33 |         73 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                         | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                            |         17 |      1,081 |         96 |        166 |      1,343 |
+| Chapter2_linearlist                                                          |          5 |        449 |         64 |         81 |        594 |
+| Chapter3_Stack_And_Queue                                                     |          4 |        164 |          4 |         15 |        183 |
+| Chapter4_String                                                              |          2 |        140 |          7 |         13 |        160 |
+| Chapter5_Array_And_Table                                                     |          5 |        324 |         21 |         55 |        400 |
++------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                     | language | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| d:\Vscode_win\C++\data_struct\Chapter2_linearlist\LinearList_link.cpp        | C++      |        105 |         24 |         12 |        141 |
+| d:\Vscode_win\C++\data_struct\Chapter2_linearlist\Ploynomial.cpp             | C++      |         90 |          2 |          7 |         99 |
+| d:\Vscode_win\C++\data_struct\Chapter2_linearlist\StaticLink_List.cpp        | C++      |         95 |         22 |         16 |        133 |
+| d:\Vscode_win\C++\data_struct\Chapter2_linearlist\linear_list_sequential.cpp | C++      |        123 |         16 |         15 |        154 |
+| d:\Vscode_win\C++\data_struct\Chapter2_linearlist\其他形式的链表.md                 | Markdown |         36 |          0 |         31 |         67 |
+| d:\Vscode_win\C++\data_struct\Chapter3_Stack_And_Queue\bracket_detect.cpp    | C++      |         64 |          1 |          2 |         67 |
+| d:\Vscode_win\C++\data_struct\Chapter3_Stack_And_Queue\stack.cpp             | C++      |         70 |          0 |          9 |         79 |
+| d:\Vscode_win\C++\data_struct\Chapter3_Stack_And_Queue\test.cpp              | C++      |          7 |          0 |          2 |          9 |
+| d:\Vscode_win\C++\data_struct\Chapter3_Stack_And_Queue\trans.cpp             | C++      |         23 |          3 |          2 |         28 |
+| d:\Vscode_win\C++\data_struct\Chapter4_String\KMP.cpp                        | C++      |        107 |          3 |         11 |        121 |
+| d:\Vscode_win\C++\data_struct\Chapter4_String\simple_match.cpp               | C++      |         33 |          4 |          2 |         39 |
+| d:\Vscode_win\C++\data_struct\Chapter5_Array_And_Table\array.cpp             | C++      |         13 |          2 |          5 |         20 |
+| d:\Vscode_win\C++\data_struct\Chapter5_Array_And_Table\cross_link_list.cpp   | C++      |         49 |          0 |         10 |         59 |
+| d:\Vscode_win\C++\data_struct\Chapter5_Array_And_Table\sparse_martix.cpp     | C++      |         83 |          6 |         16 |        105 |
+| d:\Vscode_win\C++\data_struct\Chapter5_Array_And_Table\sparse_x.cpp          | C++      |        120 |          0 |         10 |        130 |
+| d:\Vscode_win\C++\data_struct\Chapter5_Array_And_Table\zip_martix.cpp        | C++      |         59 |         13 |         14 |         86 |
+| d:\Vscode_win\C++\data_struct\readme.md                                      | Markdown |          4 |          0 |          2 |          6 |
+| Total                                                                        |          |      1,081 |         96 |        166 |      1,343 |
++------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
