@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 using namespace std;
 // 二叉树的特点是每个结点至多只有两棵子树，且子树有左右之分，是有序树
 /*二叉树的性质*/
@@ -28,13 +29,15 @@ struct BiTNode{
 };
 
 int create_bintree(BiTNode *&root);
+void Inorder(BiTNode* root);
+void Inorder2(BiTNode* root);
 void Preorder(BiTNode* root);
 
 int main()
 {
     BiTNode * bintree;
     create_bintree(bintree);
-    Preorder(bintree);
+    Inorder2(bintree);
 }
 int create_bintree(BiTNode *&root)
 {
@@ -57,5 +60,40 @@ void Preorder(BiTNode* root){
         cout<<root->data<<endl;
         Preorder(root->left);
         Preorder(root->right);
+    }
+}
+
+void Inorder(BiTNode* root){
+    stack<BiTNode*> s;
+    BiTNode *temp=root;
+    while(temp!=NULL||!s.empty()){
+        if(temp!=NULL){
+            s.push(temp);
+            temp=temp->left;
+        }
+        else{
+            temp=s.top()->right;
+            cout<<s.top()->data;
+            s.pop();
+        }
+    }
+}
+
+void Inorder2(BiTNode* root){
+    stack<BiTNode*> s;
+    s.push(root);
+    BiTNode* temp=root;
+    while(!s.empty()){
+        while(temp!=NULL){
+            temp=temp->left;
+            s.push(temp);
+        }
+        s.pop();
+        if(!s.empty()){
+            temp=s.top()->right;
+            cout<<s.top()->data;
+            s.pop();
+            s.push(temp);
+        }
     }
 }
