@@ -23,6 +23,7 @@ int Inorder_Threading(BiThrNode *&root,BiThrNode *&T);
 int main()
 {
     BiThrNode * root;
+    cout<<"Please input the value of tree_nodes"<<endl;
     create_bintree(root);
     BiThrNode * thrd;
     Inorder_Threading(thrd,root);
@@ -31,7 +32,6 @@ int main()
 int create_bintree(BiThrNode *&root)
 {
     char ch;
-    cout<<"Please input the value of tree_nodes"<<endl;
     cin>>ch;
     if(ch=='#'){
         root=NULL;
@@ -63,7 +63,7 @@ int Inorder_Threading(BiThrNode *&root,BiThrNode *&T)
     if(T==NULL) root->left=root;
     else{
         root->left=T; pre=root;
-        Inthreading(root,pre);
+        Inthreading(T,pre);
         pre->Rtag=Clue;
         pre->right=root;
         root->right=pre;
